@@ -31,11 +31,10 @@ USER cocoapods
 
 RUN mkdir -p "$(rbenv root)"/plugins
 RUN git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
-RUN echo 'eval "$(rbenv init -)"' > ~/.bashrc
+RUN echo 'eval "$(rbenv init -)"; rbenv rehash' > ~/.bashrc
 RUN rbenv install $RUBY_VERSION
 RUN rbenv global $RUBY_VERSION
 RUN gem install -v $COCOAPODS_VERSION cocoapods
-RUN rbenv rehash
 
 RUN curl -vkL -o - https://github.com/intuit/auto/releases/download/v$AUTO_VERSION/auto-linux.gz | gunzip > ~/auto
 RUN chmod a+x ~/auto
