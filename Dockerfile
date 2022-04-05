@@ -31,7 +31,8 @@ USER cocoapods
 
 RUN mkdir -p "$(rbenv root)"/plugins
 RUN git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
-RUN echo 'eval "$(rbenv init -)"; rbenv rehash' > ~/.bashrc
+RUN echo 'eval "$(rbenv init -)"' > ~/.bashrc
+ENV PATH=$PATH:/home/cocoapods/.rbenv/shims
 RUN rbenv install $RUBY_VERSION
 RUN rbenv global $RUBY_VERSION
 RUN gem install -v $COCOAPODS_VERSION cocoapods
