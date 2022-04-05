@@ -31,4 +31,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: hborawski/swift-docc-docker:latest
+          tags: hborawski/swift-docc-docker:latest,hborawski/swift-docc-docker:$GITHUB_SHA
