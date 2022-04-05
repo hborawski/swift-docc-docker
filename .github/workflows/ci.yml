@@ -14,6 +14,15 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
       -
+        name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: |
+            hborawski/swift-docc-docker
+          tags: |
+            type=sha
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       -
@@ -31,6 +40,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: |
-            hborawski/swift-docc-docker:latest
-            "hborawski/swift-docc-docker:$GITHUB_SHA"
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
